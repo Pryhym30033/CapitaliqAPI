@@ -1,16 +1,24 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from capitaliqSDK import *
+import pandas as pd
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+name = Company_List()
+
+strYear = input("START YEAR: ")
+strYearInt = int(strYear)+1
+
+endYear = input("END YEAR: ")
+endYearInt = int(endYear)
+
+findata = GetFinData(name[1], strYearInt, endYearInt)
+finframe = CashAccum(findata)
+revFrame = rev(findata)
+rtoic = ROIC(findata)
+
+prices = GetPriceData(name[1], strYear, endYear)
+priceframe = PriceAccum(prices)
+
+Plot(name[0], finframe, priceframe, revFrame, rtoic)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+report(name[0], rtoic, finframe, revFrame)
