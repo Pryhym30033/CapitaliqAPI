@@ -16,8 +16,6 @@ import os
 
 from wcwidth import width
 
-from capitaliq_client import response, bearer_token, payload, req_array
-
 load_dotenv()
 
 custom_style = Style([
@@ -238,7 +236,7 @@ def Plot(name, findata, pricedata, revdata, roicdata):
     plt.tight_layout()
     plt.show()
 
-def report(name, roicframe, finframe, revframe, priceframe):
+def report(name, roicframe, finframe, revframe, priceframe, strt, end):
     roics = round((roicframe['ROIC'].mean()*100), 1)
     csh = []
     revs = []
@@ -254,11 +252,12 @@ def report(name, roicframe, finframe, revframe, priceframe):
 
     cshYld = round(finframe['CASHFLOW/SHARE'].iloc[-1]/ priceframe['PRICE'].iloc[-1]*100, 1)
 
+    years = end-strt
     print(f"""
     Company Name: {name}
     AVG ROIC: {roics}%
     AVG FCF GROWTH: {round(np.mean(csh*100), 1)}%
-    FCF GROWTH FOR PERIOD: {period}%
+    FCF ANNUALIZED GROWTH FOR PERIOD: {period/years}%
     AVG REVENUE GROWTH: {round(np.mean(revs*100), 1)}%
     CURRENT CASH YIELD: {cshYld}%
 """)

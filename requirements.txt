@@ -31,7 +31,7 @@ questionary==2.1.1
 requests==2.34.2
 simple-term-menu==1.6.6
 six==1.17.0
-spgmi_api_sdk @ file:///home/wintersice/Pryhym30033/Pycharm/spgmi_api_sdk_python_v3.0.0/spgmi_api_sdk-3.0.0.tar.gz#sha256=5a414981644ea4f30bdc90d98b122433c53e98b21b08d3faff7656afbcfde371
+spgmi_api_sdk @ file:///home/pcm30033/Pryhym30033/CapitaliqAPI/spgmi_api_sdk_python_v3.0.0/spgmi_api_sdk-3.0.0.tar.gz
 stack-data==0.6.3
 traitlets==5.15.0
 urllib3==2.7.0

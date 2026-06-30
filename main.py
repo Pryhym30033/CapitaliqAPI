@@ -21,4 +21,4 @@ priceframe = PriceAccum(prices)
 Plot(name[0], finframe, priceframe, revFrame, rtoic)
 
 
-report(name[0], rtoic, finframe, revFrame, priceframe)
+report(name[0], rtoic, finframe, revFrame, priceframe, strYearInt, endYearInt)
