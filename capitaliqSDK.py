@@ -238,7 +238,7 @@ def Plot(name, findata, pricedata, revdata, roicdata):
     plt.tight_layout()
     plt.show()
 
-def report(name, roicframe, finframe, revframe):
+def report(name, roicframe, finframe, revframe, priceframe):
     roics = round((roicframe['ROIC'].mean()*100), 1)
     csh = []
     revs = []
@@ -252,11 +252,14 @@ def report(name, roicframe, finframe, revframe):
 
     period = round((finframe['ACCUM CASH'].iloc[-1] - finframe['ACCUM CASH'].iloc[0])/finframe['ACCUM CASH'].iloc[0]*100, 1)
 
+    cshYld = round(finframe['CASHFLOW/SHARE'].iloc[-1]/ priceframe['PRICE'].iloc[-1]*100, 1)
+
     print(f"""
     Company Name: {name}
     AVG ROIC: {roics}%
     AVG FCF GROWTH: {round(np.mean(csh*100), 1)}%
     FCF GROWTH FOR PERIOD: {period}%
     AVG REVENUE GROWTH: {round(np.mean(revs*100), 1)}%
+    CURRENT CASH YIELD: {cshYld}%
 """)
 
