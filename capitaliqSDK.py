@@ -252,7 +252,13 @@ def report(name, roicframe, finframe, revframe, priceframe, strt, end):
 
     cshYld = round(finframe['CASHFLOW/SHARE'].iloc[-1]/ priceframe['PRICE'].iloc[-1]*100, 1)
 
-
+    frame = pd.DataFrame({
+        "Year": finframe['DATE'].dt.year,
+        "FcF": finframe['CASHFLOW/SHARE'],
+        "Revs": revframe['REVS'],
+        "NoPat": roicframe['NOPAT'],
+        "IC": roicframe['IC']
+    })
 
     years = end-strt
     print(f"""
@@ -263,9 +269,5 @@ def report(name, roicframe, finframe, revframe, priceframe, strt, end):
     FCF ANNUALIZED GROWTH FOR PERIOD: {period/years}%
     CURRENT CASH YIELD: {cshYld}%
     -------------------------------------------------------
-            FcF             Revs
+    {frame}
 """)
-    for index, date in enumerate(finframe['DATE']):
-        year = str(date).split('-')[0]
-        print(f"{year}      ${round(finframe['CASHFLOW/SHARE'].iloc[index], 3)}        ${round(revframe['REVS'].iloc[index], 3)}")
-
